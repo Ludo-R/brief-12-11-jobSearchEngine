@@ -20,6 +20,7 @@ RANDOMIZE_DOWNLOAD_DELAY = True
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
+    'jobsearch.pipelines.DuplicatesPipeline': 300,
     'jobsearch.pipelines.MongoPipeline': 300,
 }
 MONGO_URI = 'mongodb://localhost:27017'

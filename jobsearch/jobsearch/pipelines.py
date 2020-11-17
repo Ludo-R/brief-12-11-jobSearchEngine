@@ -7,10 +7,11 @@
 # useful for handling different item types with a single interface
 import logging
 import pymongo
+from scrapy.exceptions import DropItem
 
 class MongoPipeline(object):
 
-    collection_name = 'test8'
+    collection_name = 'testjob'
 
     def __init__(self, mongo_uri, mongo_db):
         self.mongo_uri = mongo_uri
@@ -37,5 +38,19 @@ class MongoPipeline(object):
     def process_item(self, item, spider):
         ## how to handle each post
         self.db[self.collection_name].insert(dict(item))
+       
         logging.debug("Post added to MongoDB")
         return item
+
+
+class DuplicatesPipeline(object):
+
+    def __init__(self):
+        self.ids_seen = []
+
+    def process_item(self, item, spider):
+        if item["guid"] in self.ids_seen:
+            raise DropItem("Duplicate item found: %s" % item)
+        else:
+            self.ids_seen.append(item['guid'])
+            return item

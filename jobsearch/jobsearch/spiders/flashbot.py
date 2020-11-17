@@ -9,8 +9,6 @@ Created on Tue Nov 17 09:03:45 2020
 import scrapy
 from scrapy import Request
 
-from pprint import pprint
-
 
 class FlashbotSpider(scrapy.Spider):
     name = 'flashbot'
@@ -33,7 +31,7 @@ class FlashbotSpider(scrapy.Spider):
             target = url.format(query=query)
             print("fetching the URL: %s" % target)
             if target.startswith("file://"):
-                r = Request(target, callback=self.scrapit, dont_filter=True)
+                r = Request(target, callback=self.scrapit, dont_filter=False)
             else:
                 r = Request(target, callback=self.scrapit)
             r.meta['query'] = query
