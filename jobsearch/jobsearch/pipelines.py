@@ -10,7 +10,7 @@ import pymongo
 
 class MongoPipeline(object):
 
-    collection_name = 'test6'
+    collection_name = 'test8'
 
     def __init__(self, mongo_uri, mongo_db):
         self.mongo_uri = mongo_uri
