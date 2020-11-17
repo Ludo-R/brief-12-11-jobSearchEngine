@@ -8,14 +8,19 @@
 import logging
 import pymongo
 from scrapy.exceptions import DropItem
+from pymongo import MongoClient
+
 
 class MongoPipeline(object):
-
+    
     collection_name = 'testjob'
 
     def __init__(self, mongo_uri, mongo_db):
         self.mongo_uri = mongo_uri
         self.mongo_db = mongo_db
+        self.client = MongoClient("localhost", 27017)
+        self.db = self.client["jobsearchengine"]
+        self.testjob = self.db["testjob"]
 
     @classmethod
     def from_crawler(cls, crawler):
@@ -37,12 +42,13 @@ class MongoPipeline(object):
 
     def process_item(self, item, spider):
         ## how to handle each post
+
         self.db[self.collection_name].insert(dict(item))
        
         logging.debug("Post added to MongoDB")
         return item
 
-
+"""
 class DuplicatesPipeline(object):
 
     def __init__(self):
@@ -54,3 +60,4 @@ class DuplicatesPipeline(object):
         else:
             self.ids_seen.append(item['guid'])
             return item
+"""
