@@ -3,7 +3,7 @@
 #### How to use the engine :
 
 - Go into your terminal
-- Into main project browser type : 
+- Into main project browser ( brief-12-11-jobSearchEngine) type : 
 
 		python run.py
 
@@ -13,7 +13,7 @@
 #### How to update the engine : 
 
 - Go into your terminal
-- Into the jobsearch folder
+- Into the ( jobsearch ) folder
 - type :
 
 		scrapy crawl flashbot
