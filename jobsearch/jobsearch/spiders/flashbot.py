@@ -18,7 +18,7 @@ class FlashbotSpider(scrapy.Spider):
     start_urls = ['http://rss.jobsearch.monster.com/rssquery.ashx?q={query}']
 
 
-    thesaurus = ["machine learning", "machine", "big data", "big", "data", "python", "sql", "ia", "nosql"]
+    thesaurus = ["machine learning", "machine", "big data", "big", "data", "python", "sql", "ia", "nosql", "job", "informatique", "computor", "administrator", "npl", "neuronal", "scrapy"]
 
     LOG_LEVEL = "INFO"
 
