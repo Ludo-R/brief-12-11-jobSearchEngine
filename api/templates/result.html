@@ -6,6 +6,16 @@
     <title>Job Search Engine</title>
 </head>
 <body>
-   <h1>TEST</h1>
+   <h1>Resultat pour : {{resultat}}</h1>
+   {% for j in job %}
+   <div>
+      <tr>
+         <td><b>Titre :</b>{{ j.title }}</td><br>
+         <td><b>Description :</b>{{ j.description }}</td><br>
+         <td><b>URL :</b> <a href={{j.link}}>{{j.link}}</a></td><br>
+         <td><b>Pub Date :</b>{{ j.pubDate }}</td><
+      </tr>
+   </div>
+   {% endfor %}
 </body>
 </html>

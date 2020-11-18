@@ -6,8 +6,12 @@ Created on Tue Nov 17 11:50:37 2020
 @author: randon
 """
 
-from flask import Flask, render_template
+from flask import Flask, render_template, url_for, request
+from pymongo import MongoClient
 
+client = MongoClient("localhost", 27017)
+db = client["jobsearchengine"]
+collection = db["testjob"]
 
 app = Flask(__name__)
 
@@ -15,10 +19,15 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
+@app.route('/result', methods = ['POST'])
 def result():
-    return render_template('result.html')
+    r = request.form.get("research")
+    a = db.testjob.find({"query":r}).sort([("pubDate", -1)])
+    
+    return render_template('result.html', resultat = r, job= a)
 
 if __name__ == "__main__":
     app.run()
     
+
     

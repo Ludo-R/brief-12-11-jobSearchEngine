@@ -1,9 +1,10 @@
 body {
-	background-image: url( img/background.jpg )
+	background-image: url( img/background.jpg );
+	background-attachment: fixed;
 }
 
 h1 {
-    border: 2px #332D2D solid;
+    
     color: brown;
     text-align: center;
     padding: 10px;
@@ -15,4 +16,16 @@ h2 {
 
 p, form {
 	text-align: center;
+}
+
+div {
+	margin-right:400px;
+	margin-left:400px;
+	margin-bottom:40px;
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	background-color: #D6D5D5;
+	border: 2px #332D2D solid;
 }

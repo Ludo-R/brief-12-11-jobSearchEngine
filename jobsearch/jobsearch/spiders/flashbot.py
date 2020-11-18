@@ -18,7 +18,7 @@ class FlashbotSpider(scrapy.Spider):
     start_urls = ['http://rss.jobsearch.monster.com/rssquery.ashx?q={query}']
 
 
-    thesaurus = ["machine learning", "machine", "big data", "big", "data", "python", "sql", "ia"]
+    thesaurus = ["machine learning", "machine", "big data", "big", "data", "python", "sql", "ia", "nosql"]
 
     LOG_LEVEL = "INFO"
 
@@ -51,16 +51,11 @@ class FlashbotSpider(scrapy.Spider):
 
         # Scrap the data
         for doc in response.xpath("//item"):
-            item["title"] = doc.xpath("title/text()").extract()
-            item["description"] = doc.xpath("description/text()").extract()
-            item["link"] = doc.xpath("link/text()").extract()
-            item["pubDate"] = doc.xpath("pubDate/text()").extract()
-            item["guid"] = doc.xpath("guid/text()").extract()
+            item["title"] = doc.xpath("title/text()").extract_first()
+            item["description"] = doc.xpath("description/text()").extract_first()
+            item["link"] = doc.xpath("link/text()").extract_first()
+            item["pubDate"] = doc.xpath("pubDate/text()").extract_first()
+            item["guid"] = doc.xpath("guid/text()").extract_first()
             #pprint(item, indent=2)
             print("item scraped:", item["title"])
-            
-            guid = item["guid"][0]
-            rest= collection.find({"guid":guid})
-            print (rest.count())
-            if rest.count() ==0:
-                yield item
+            yield item

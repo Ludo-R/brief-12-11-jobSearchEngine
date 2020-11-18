@@ -9,7 +9,7 @@
    <h1>Welcome to the Job Search Engine</h1>
    <h2>A search engine to find you're digital job !!</h2>
    <p>Select your research option :
-   		<FORM name="Item_1">
+   		<FORM name="Item_1" action="http://localhost:5000/result" method="post">
 		<SELECT name="research" size="1">
 		<OPTION value="ia">IA
 		<OPTION value="machine learning">Machine Learning
@@ -18,11 +18,8 @@
 		<OPTION value="nosql">noSQL
 		<OPTION value="python">Python
 		</SELECT>
-		<input type="submit" formaction="result">
+		<input type="submit">
 		</FORM>
-	</p>
-	<p>
-		<input type="button" buttonaction="result">
 	</p>
 </body>
 </html>

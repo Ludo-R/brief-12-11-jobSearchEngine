@@ -42,8 +42,10 @@ class MongoPipeline(object):
 
     def process_item(self, item, spider):
         ## how to handle each post
-
-        self.db[self.collection_name].insert(dict(item))
-       
-        logging.debug("Post added to MongoDB")
+        guid = item["guid"]
+        rest= self.testjob.find({"guid":guid})
+        print (rest.count())
+        if rest.count() ==0:
+            self.testjob.insert(dict(item))
+            logging.debug("Post added to MongoDB")
         return item
