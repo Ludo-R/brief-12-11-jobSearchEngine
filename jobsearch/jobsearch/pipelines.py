@@ -47,17 +47,3 @@ class MongoPipeline(object):
        
         logging.debug("Post added to MongoDB")
         return item
-
-"""
-class DuplicatesPipeline(object):
-
-    def __init__(self):
-        self.ids_seen = []
-
-    def process_item(self, item, spider):
-        if item["guid"] in self.ids_seen:
-            raise DropItem("Duplicate item found: %s" % item)
-        else:
-            self.ids_seen.append(item['guid'])
-            return item
-"""

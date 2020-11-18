@@ -8,6 +8,7 @@ Created on Tue Nov 17 09:03:45 2020
 
 import scrapy
 from scrapy import Request
+from pymongo import MongoClient
 
 
 class FlashbotSpider(scrapy.Spider):
@@ -17,7 +18,7 @@ class FlashbotSpider(scrapy.Spider):
     start_urls = ['http://rss.jobsearch.monster.com/rssquery.ashx?q={query}']
 
 
-    thesaurus = ["machine learning", "machine", "big data", "big", "data"]
+    thesaurus = ["machine learning", "machine", "big data", "big", "data", "python", "sql", "ia"]
 
     LOG_LEVEL = "INFO"
 
@@ -39,7 +40,11 @@ class FlashbotSpider(scrapy.Spider):
 
     def scrapit(self, response):
         query = response.meta["query"]
-
+        
+        client = MongoClient("localhost", 27017)
+        db = client["jobsearchengine"]
+        collection = db["testjob"]
+        
         # Base item with query used to this response
         item = {"query": query}
         print(query, response)
@@ -53,4 +58,9 @@ class FlashbotSpider(scrapy.Spider):
             item["guid"] = doc.xpath("guid/text()").extract()
             #pprint(item, indent=2)
             print("item scraped:", item["title"])
-            yield item
+            
+            guid = item["guid"][0]
+            rest= collection.find({"guid":guid})
+            print (rest.count())
+            if rest.count() ==0:
+                yield item

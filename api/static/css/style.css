@@ -1,0 +1,18 @@
+body {
+	background-image: url( img/background.jpg )
+}
+
+h1 {
+    border: 2px #332D2D solid;
+    color: brown;
+    text-align: center;
+    padding: 10px;
+}
+
+h2 {
+	text-align: center;
+}
+
+p, form {
+	text-align: center;
+}
